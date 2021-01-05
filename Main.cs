@@ -14,10 +14,8 @@ namespace HalconWindow_WinForm
     public partial class Main : Form
     {
         private HTuple hv_WindowHandle;
-        private int ImageWidth = 1000;
-        private int ImageHeight = 800;
-        private HTuple hv_chipWidth = new HTuple();
-        private HTuple hv_chipLength = new HTuple();
+        private HTuple hv_ImageWidth = 1000;
+        private HTuple hv_ImageHeight = 800;
         private HTuple hv_MouseRow = new HTuple();
         private HTuple hv_MouseCol = new HTuple();
         private HTuple hv_MouseVal = new HTuple();
@@ -41,7 +39,7 @@ namespace HalconWindow_WinForm
                 hv_MouseCol.Dispose();
                 hv_MouseVal.Dispose();
                 HOperatorSet.GetMposition(hv_WindowHandle, out hv_MouseRow, out hv_MouseCol, out _);
-                if (hv_MouseRow > 0 && hv_MouseRow < ImageHeight && hv_MouseCol > 0 && hv_MouseCol < ImageWidth)
+                if (hv_MouseRow > 0 && hv_MouseRow < hv_ImageHeight && hv_MouseCol > 0 && hv_MouseCol < hv_ImageWidth)
                 {
                     HOperatorSet.GetGrayval(ho_Image, hv_MouseRow, hv_MouseCol, out HTuple pointGray);
                     StatusLabel.Text = $"X:{hv_MouseCol}  Y:{hv_MouseRow}  Value:{hv_MouseVal}";
@@ -63,7 +61,7 @@ namespace HalconWindow_WinForm
         private void hWindowControl_HInitWindow(object sender, EventArgs e)
         {
             HOperatorSet.SetWindowParam(hv_WindowHandle, "graphics_stack", "true");
-            ResetWindow(ref hWindowControl, ImageHeight, ImageWidth);
+            ResetWindow(ref hWindowControl, hv_ImageHeight, hv_ImageWidth);
         }
 
         private static void ResetWindow(ref HWindowControl h_HWindowControl, int ImageHeight, int ImageWidth)
@@ -140,7 +138,39 @@ namespace HalconWindow_WinForm
 
         private void btn_Open_Click(object sender, EventArgs e)
         {
+            using (var ofd = new OpenFileDialog())
+            {
+                ofd.Title = "Open Image File";
+                ofd.Filter = "JPeg Image|*.jpg|Bitmap Image|*.bmp|Gif Image|*.gif|Png Image|*.png";
+                if (ofd.ShowDialog() == DialogResult.OK && ofd.FileName != null)
+                {
+                    // Open document
+                    string filename = ofd.FileName;
+                    ho_Image.Dispose();
+                    HOperatorSet.ReadImage(out ho_Image, filename);
+                    hv_ImageWidth.Dispose(); hv_ImageHeight.Dispose();
+                    HOperatorSet.GetImageSize(ho_Image, out hv_ImageWidth, out hv_ImageHeight);
+                    HOperatorSet.DispObj(ho_Image, hv_WindowHandle);
+                    ResetWindow(ref hWindowControl, hv_ImageHeight, hv_ImageWidth);
+                }
+            }
+            
+        }
 
+        private void Btn_Clear_Click(object sender, EventArgs e)
+        {
+            ho_Image.Dispose();
+            HOperatorSet.ClearWindow(hv_WindowHandle);
+        }
+
+        private void Btn_Reset_Click(object sender, EventArgs e)
+        {
+            ResetWindow(ref hWindowControl, hv_ImageHeight, hv_ImageWidth);
+        }
+
+        private void hWindowControl_Resize(object sender, EventArgs e)
+        {
+            ResetWindow(ref hWindowControl, hv_ImageHeight, hv_ImageWidth);
         }
     }
 }
