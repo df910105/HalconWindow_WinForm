@@ -90,9 +90,10 @@ namespace HalconWindow_WinForm
             // 
             // Btn_Reset
             // 
-            this.Btn_Reset.Location = new System.Drawing.Point(3, 61);
+            this.Btn_Reset.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.Btn_Reset.Location = new System.Drawing.Point(3, 83);
             this.Btn_Reset.Name = "Btn_Reset";
-            this.Btn_Reset.Size = new System.Drawing.Size(75, 23);
+            this.Btn_Reset.Size = new System.Drawing.Size(93, 34);
             this.Btn_Reset.TabIndex = 0;
             this.Btn_Reset.Text = "Reset";
             this.Btn_Reset.UseVisualStyleBackColor = true;
@@ -100,9 +101,10 @@ namespace HalconWindow_WinForm
             // 
             // Btn_Clear
             // 
-            this.Btn_Clear.Location = new System.Drawing.Point(3, 32);
+            this.Btn_Clear.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.Btn_Clear.Location = new System.Drawing.Point(3, 43);
             this.Btn_Clear.Name = "Btn_Clear";
-            this.Btn_Clear.Size = new System.Drawing.Size(75, 23);
+            this.Btn_Clear.Size = new System.Drawing.Size(93, 34);
             this.Btn_Clear.TabIndex = 0;
             this.Btn_Clear.Text = "Clear";
             this.Btn_Clear.UseVisualStyleBackColor = true;
@@ -110,9 +112,10 @@ namespace HalconWindow_WinForm
             // 
             // Btn_Open
             // 
+            this.Btn_Open.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.Btn_Open.Location = new System.Drawing.Point(3, 3);
             this.Btn_Open.Name = "Btn_Open";
-            this.Btn_Open.Size = new System.Drawing.Size(75, 23);
+            this.Btn_Open.Size = new System.Drawing.Size(93, 34);
             this.Btn_Open.TabIndex = 0;
             this.Btn_Open.Text = "Open";
             this.Btn_Open.UseVisualStyleBackColor = true;
