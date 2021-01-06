@@ -55,6 +55,8 @@ namespace HalconWindow_WinForm
             this.hWindowControl.WindowSize = new System.Drawing.Size(640, 480);
             this.hWindowControl.HInitWindow += new HalconDotNet.HInitWindowEventHandler(this.hWindowControl_HInitWindow);
             this.hWindowControl.HMouseMove += new HalconDotNet.HMouseEventHandler(this.hWindowControl_HMouseMove);
+            this.hWindowControl.HMouseDown += new HalconDotNet.HMouseEventHandler(this.hWindowControl_HMouseDown);
+            this.hWindowControl.HMouseUp += new HalconDotNet.HMouseEventHandler(this.hWindowControl_HMouseUp);
             this.hWindowControl.HMouseWheel += new HalconDotNet.HMouseEventHandler(this.hWindowControl_HMouseWheel);
             this.hWindowControl.Resize += new System.EventHandler(this.hWindowControl_Resize);
             // 
